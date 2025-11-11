@@ -1,4 +1,4 @@
-﻿import { ReactNode, cloneElement, isValidElement } from 'react';
+import { ReactNode, ReactElement, cloneElement, isValidElement } from 'react';
 import clsx from 'clsx';
 
 type FieldProps = {
@@ -19,16 +19,16 @@ export function Field({ label, htmlFor, description, error, children, className 
   if (Array.isArray(children)) {
     control = children.map((child, index) => {
       if (index === 0 && isValidElement(child)) {
-        return cloneElement(child, {
+        return cloneElement(child as ReactElement, {
           'aria-describedby': describedBy || undefined
-        });
+        } as Record<string, unknown>);
       }
       return child;
     });
   } else if (isValidElement(children)) {
-    control = cloneElement(children, {
+    control = cloneElement(children as ReactElement, {
       'aria-describedby': describedBy || undefined
-    });
+    } as Record<string, unknown>);
   }
 
   return (

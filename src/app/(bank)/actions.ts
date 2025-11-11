@@ -1,4 +1,4 @@
-﻿'use server';
+'use server';
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -18,7 +18,7 @@ export async function updateNameAction(_: { error?: string } | undefined, formDa
   const user = await requireUser();
   const parsed = nameSchema.safeParse({ name: formData.get('name') });
   if (!parsed.success) {
-    return { error: parsed.error.errors[0]?.message || 'Invalid name' };
+    return { error: parsed.error.issues[0]?.message || 'Invalid name' };
   }
 
   await prisma.user.update({ where: { id: user.id }, data: { name: parsed.data.name } });
@@ -33,7 +33,7 @@ export async function updatePasswordAction(_: { error?: string } | undefined, fo
     newPassword: formData.get('newPassword')
   });
   if (!parsed.success) {
-    return { error: parsed.error.errors[0]?.message || 'Invalid password' };
+    return { error: parsed.error.issues[0]?.message || 'Invalid password' };
   }
 
   const matches = await verifyPassword(parsed.data.currentPassword, user.passwordHash);
@@ -45,7 +45,7 @@ export async function updatePasswordAction(_: { error?: string } | undefined, fo
   redirect(`/profile?success=${encodeURIComponent('Password updated')}`);
 }
 
-async function mutateBalance(accountId: number, delta: Prisma.Decimal) {
+function mutateBalance(accountId: number, delta: Prisma.Decimal) {
   return prisma.account.update({
     where: { id: accountId },
     data: { balance: { increment: delta } }
@@ -127,7 +127,7 @@ export async function transferAction(_: { error?: string } | undefined, formData
     note: formData.get('note')
   });
   if (!parsed.success) {
-    return { error: parsed.error.errors[0]?.message || 'Invalid transfer.' };
+    return { error: parsed.error.issues[0]?.message || 'Invalid transfer.' };
   }
 
   const { fromAccountId, toAccountId, amount, note } = parsed.data;

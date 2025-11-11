@@ -1,4 +1,4 @@
-﻿import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { getUserFromRequest } from '@/lib/auth';

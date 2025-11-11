@@ -1,4 +1,4 @@
-﻿import { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { NavBar } from '@/components/NavBar';

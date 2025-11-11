@@ -1,4 +1,4 @@
-﻿import { getUserFromCookies } from '@/lib/auth';
+import { getUserFromCookies } from '@/lib/auth';
 import { PageHeader } from '@/components/PageHeader';
 import NameForm from './ProfileNameForm';
 import PasswordForm from './ProfilePasswordForm';

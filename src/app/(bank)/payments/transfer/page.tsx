@@ -1,4 +1,4 @@
-﻿import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { getUserFromCookies } from '@/lib/auth';
 import { PageHeader } from '@/components/PageHeader';
 import TransferForm from './TransferForm';

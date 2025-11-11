@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useFormState, useFormStatus } from 'react-dom';
 import { updatePasswordAction } from '../actions';

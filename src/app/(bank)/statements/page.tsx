@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { getUserFromCookies } from '@/lib/auth';
 import { PageHeader } from '@/components/PageHeader';

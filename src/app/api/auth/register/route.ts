@@ -1,4 +1,4 @@
-﻿import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { registerSchema } from '@/lib/z';
 import { enforceRateLimit, hashPassword } from '@/lib/auth';

@@ -1,4 +1,4 @@
-﻿import { z } from 'zod';
+import { z } from 'zod';
 
 const passwordRule = z
   .string()
@@ -30,17 +30,22 @@ export const billPaySchema = z.object({
   amount: z.coerce.number().positive()
 });
 
-export const transferSchema = z.object({
-  fromAccountId: z.coerce.number().int().positive(),
-  toAccountId: z.coerce.number().int().positive().refine((val, ctx) => {
-    if (val === ctx.parent?.fromAccountId) {
-      return false;
+export const transferSchema = z
+  .object({
+    fromAccountId: z.coerce.number().int().positive(),
+    toAccountId: z.coerce.number().int().positive(),
+    amount: z.coerce.number().positive(),
+    note: z.string().max(140).optional()
+  })
+  .superRefine((data, ctx) => {
+    if (data.fromAccountId === data.toAccountId) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Choose a different destination account',
+        path: ['toAccountId']
+      });
     }
-    return true;
-  }, 'Choose a different destination account'),
-  amount: z.coerce.number().positive(),
-  note: z.string().max(140).optional()
-});
+  });
 
 export const nameSchema = z.object({ name: z.string().min(2).max(80) });
 

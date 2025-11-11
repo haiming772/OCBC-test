@@ -1,4 +1,4 @@
-﻿# AccessPilot Web
+# AccessPilot Web
 
 AccessPilot Web is a mock OCBC-style Internet Banking experience built with Next.js 14 (App Router), Prisma + SQLite, Tailwind CSS, and secure credential auth. It focuses on accessibility, OCBC-inspired visuals, and predictable testing selectors so automation extensions can drive the UI later.
 
