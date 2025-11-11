@@ -1,0 +1,59 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ocbc-red: #d4000f;
+  --ocbc-red-dark: #a3000b;
+  --ocbc-gray-bg: #f7f7f7;
+  --ocbc-gray-text: #444444;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  background: var(--ocbc-gray-bg);
+  color: #111;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ocbc-red);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 16px;
+  background: #fff;
+  color: var(--ocbc-red);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: top 0.2s;
+}
+
+.skip-link:focus-visible {
+  top: 16px;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-[color:var(--ocbc-red)] px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-[color:var(--ocbc-red-dark)] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-[color:var(--ocbc-red)] px-5 py-3 font-semibold text-[color:var(--ocbc-red)] hover:bg-white disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-[color:var(--ocbc-red)] hover:bg-white/60;
+  }
+}
